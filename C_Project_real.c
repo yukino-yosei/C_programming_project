@@ -62,9 +62,9 @@ void print_index(int i,int subj){
     mge_sort(1,student[i],tmp);
     int cut_idx = (int)((double)(0.1) * student[i]);
     for(;cut_idx > 0 && tmp[cut_idx] == tmp[cut_idx + 1];--cut_idx);
-    printf("%d반 %s 과목 평균 점수는 %.2f 이란다.\n",i,subject[subj],m);
-    printf("%d반 %s 과목 점수 표준편차는 %.2f이란다.\n",i,subject[subj],stdev);
-    printf("%d반 %s 과목 1등급 컷은 %d이란다.(-1이라고 쓰면 1등급 컷이 터진 것이란다.)\n",i,subject[subj],tmp[cut_idx]);
+    printf("%d반 %s 과목 평균 점수 : %.2f\n",i,subject[subj],m);
+    printf("%d반 %s 과목 점수 표준편차 : %.2f\n",i,subject[subj],stdev);
+    printf("%d반 %s 과목 1등급 컷 : %d(-1이라고 쓰면 1등급 컷이 터진 것)\n",i,subject[subj],tmp[cut_idx]);
 }
 
 int compute_grade(int i,int j,int subj) {
@@ -89,7 +89,7 @@ int compute_grade(int i,int j,int subj) {
 
 int main(){
     printf("===========================================================\n");
-    printf("마리네뜨와 함께하는 성적분석 프로그램~~~~~~~~~~~~~~~~\n");
+    printf("성적분석 프로그램\n");
 
     for(int i = 1;i <= 6;++i){
         printf("%d반의 학생 수를 입력해 주세요.\n====>   ",i);
@@ -104,18 +104,18 @@ int main(){
     }
     while(1){
         printf("\n===========================================================\n");
-        printf("원하는 미라클스톤을 선택하세요.\n");
-        printf("1. 성적을 수정하는 미라클스톤\n");
-        printf("2. 석차를 계산하는 미라클스톤\n");
-        printf("3. 등급을 계산하는 미라클스톤\n");
-        printf("4. 학급 성적지표를 계산하는 미라클스톤\n");
-        printf("5. 프로그램을 종료하는 미라클스톤\n");
+        printf("원하는 작업을 선택하세요.\n");
+        printf("1. 학생의 성적을 수정\n");
+        printf("2. 학생의 석차를 계산\n");
+        printf("3. 학생의 등급을 계산\n");
+        printf("4. 학급 성적지표를 계산\n");
+        printf("5. 프로그램을 종료\n");
         scanf("%d",&mode);
         switch (mode){
             case 1:
-                printf("성적을 수정할 사람이 있니? 반, 번호 순으로 말해주렴, 마리네뜨.\n===>   ");
+                printf("성적을 수정할 사람의 반, 번호를 순서대로 입력\n===>   ");
                 scanf("%d %d",&a,&b);
-                printf("%d반 %d번 학생의 성적을 말해줄 수 있겠니, 마리네뜨?\n국어-영어-수학-한국사-사회탐구-과학탐구 순서로 말해주면 된단다.\n===>   ",a,b);
+                printf("%d반 %d번 학생의 성적 입력\n국어-영어-수학-한국사-사회탐구-과학탐구 순서\n===>   ",a,b);
                 int scr[7];
                 scr[6] = 0;
                 for(int i = 0;i < 6;++i){
@@ -125,32 +125,32 @@ int main(){
                 update(a,b,scr);
                 break;
             case 2:
-                printf("석차를 조회할 사람이 있니? 반, 번호 순으로 말해주렴, 마리네뜨.\n===>   ");
+                printf("석차를 조회할 사람의 반, 번호를 순서대로 입력\n===>   ");
                 scanf("%d %d",&a,&b);
-                printf("조회하고 싶은 과목을 입력해주려무나.\n1. 국어\n2. 영어\n3. 수학\n4. 한국사\n5. 사회탐구\n6. 과학탐구\n7. 전체성적\n===>   ");
+                printf("조회하고 싶은 과목을 입력\n1. 국어\n2. 영어\n3. 수학\n4. 한국사\n5. 사회탐구\n6. 과학탐구\n7. 전체성적\n===>   ");
                 scanf("%d",&s);
-                printf("%d반 %d번 학생의 학급내 %s 과목 석차는 %d이란다, 마리네뜨.\n",a,b,subject[s - 1],compute_rank(a,b,s - 1));
+                printf("%d반 %d번 학생의 학급내 %s 과목 석차 : %d\n",a,b,subject[s - 1],compute_rank(a,b,s - 1));
                 break;
             case 3:
-                printf("등급을 조회할 사람이 있니? 반, 번호 순으로 말해주렴, 마리네뜨.\n===>   ");
+                printf("등급을 조회할 사람의 반, 번호를 순서대로 입력\n===>   ");
                 scanf("%d %d",&a,&b);
-                printf("조회하고 싶은 과목을 입력해주려무나.\n1. 국어\n2. 영어\n3. 수학\n4. 한국사\n5. 사회탐구\n6. 과학탐구\n7. 전체성적\n===>   ");
+                printf("조회하고 싶은 과목을 입력\n1. 국어\n2. 영어\n3. 수학\n4. 한국사\n5. 사회탐구\n6. 과학탐구\n7. 전체성적\n===>   ");
                 scanf("%d",&s);
-                printf("%d반 %d번 학생의 학급내 %s 과목 등급은 %d이란다, 마리네뜨.\n",a,b,subject[s - 1],compute_grade(a,b,s - 1));
+                printf("%d반 %d번 학생의 학급내 %s 과목 등급 : %d\n",a,b,subject[s - 1],compute_grade(a,b,s - 1));
                 break;
             case 4:
-                printf("성적 지표를 조회할 학급이 있니? 반을 입력해주렴, 마리네뜨. \n===>   ");
+                printf("성적 지표를 조회할 학급의 반을 입력\n===>   ");
                 scanf("%d",&a);
-                printf("조회하고 싶은 과목을 입력해주려무나.\n1. 국어\n2. 영어\n3. 수학\n4. 한국사\n5. 사회탐구\n6. 과학탐구\n7. 전체성적\n===>   ");
+                printf("조회하고 싶은 과목을 입력\n1. 국어\n2. 영어\n3. 수학\n4. 한국사\n5. 사회탐구\n6. 과학탐구\n7. 전체성적\n===>   ");
                 scanf("%d",&s);
                 print_index(a,s - 1);
                 break;
             case 5:
-                printf("프로그램을 종료한다. 다음에 봐, 마리네뜨!");
+                printf("프로그램 종료");
                 goto EXIT;
                 break;
             default:
-                printf("그건 없는 미라클스톤이란다, 마리네뜨.\n다시 선택하렴.\n===>   ");
+                printf("명령 오류\n다시 입력\n===>   ");
         }
     }
     EXIT:
